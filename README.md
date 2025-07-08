@@ -62,16 +62,8 @@ python manage.py runserver
 http://127.0.0.1:8000/
 ## 📷 Screenshots
 
-### 🔸 Home Page (Hero Section + CTA)
-![Home Page](screenshots/homepage.png)
 
-### 🔸 Featured Pizzas Section
-![Featured Pizzas](screenshots/featured_pizzas.png)
 
-### 🔸 Why Choose Us Section
-![Why Choose Us](screenshots/why_choose_us.png)
-## 👨‍💻 Developer
 
-**Pradeep Kumar Singha**  
-🔗 [GitHub Profile](https://github.com/pradeepkumarsingha)  
-✉️ [mr.pradeepkumarsingha@gmail.com](mailto:mr.pradeepkumarsingha@gmail.com)
+
+
