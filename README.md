@@ -59,13 +59,12 @@ source env/bin/activate   # On Mac/Linux
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
-'''
-## 👨‍💻 Developer
 
+```
+
+## 👨‍💻 Developer
 **Pradeep Kumar Singha**  
 🔗 [GitHub Profile](https://github.com/pradeepkumarsingha)  
 ✉️ [mr.pradeepkumarsingha@gmail.com](mailto:mr.pradeepkumarsingha@gmail.com)
-
-
 
 
