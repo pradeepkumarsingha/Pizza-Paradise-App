@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout - Pizza Paradise{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Checkout</h2>
+    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    {% if cart_items %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>Order Summary</h4>
+                </div>
+                <div class="card-body">
+                    {% for item in cart_items %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h5>{{ item.pizza.name }}</h5>
+                            <p class="text-muted">Quantity: {{ item.quantity }}</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <h5>${{ item.total }}</h5>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Total</h4>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <h4>${{ total }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Payment</h4>
+                </div>
+                <div class="card-body">
+                    <p>Click the button below to pay with PayPal:</p>
+                    <form action="{% url 'checkout' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fab fa-paypal"></i> Pay with PayPal
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+        Your cart is empty. <a href="{% url 'menu' %}">Continue shopping</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 

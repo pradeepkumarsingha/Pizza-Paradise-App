@@ -1,0 +1,47 @@
+INSTAMOJO_API_KEY = 'test_2f1c92121e86c0338371a6b1193'
+INSTAMOJO_AUTH_TOKEN = 'test_279f3847eacd53277f2eb1aa8d4'{% extends 'base.html' %}
+
+{% block title %}Menu - Pizza Paradise{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Our Menu</h2>
+    
+    <!-- Search and Filter Section -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <form class="d-flex" method="GET">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search pizzas..." value="{{ request.GET.search }}">
+                <button class="btn btn-danger" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pizza Grid -->
+    <div class="row">
+        {% for pizza in pizzas %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ pizza.images.url }}" class="card-img-top" alt="{{ pizza.name }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pizza.name }}</h5>
+                    <p class="card-text">{{ pizza.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h5 mb-0">${{ pizza.price }}</span>
+                        <a href="{% url 'add_to_cart' pizza.id %}" class="btn btn-danger">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                No pizzas found. Please try a different search.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

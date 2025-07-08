@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Pizza Paradise{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4">Welcome to Pizza Paradise</h1>
+        <p class="lead">Delicious pizzas made with love and the finest ingredients</p>
+        <a href="{% url 'menu' %}" class="btn btn-danger btn-lg">Order Now</a>
+    </div>
+</section>
+
+<!-- Featured Pizzas -->
+<section class="container mb-5">
+    <h2 class="text-center mb-4">Our Specialties</h2>
+    <div class="row">
+        {% for pizza in featured_pizzas %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ pizza.images.url }}" class="card-img-top" alt="{{ pizza.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pizza.name }}</h5>
+                    <p class="card-text">{{ pizza.description|truncatewords:20 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h5 mb-0">${{ pizza.price }}</span>
+                        <a href="{% url 'add_to_cart' pizza.id %}" class="btn btn-danger">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Why Choose Us</h2>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-pizza-slice fa-3x text-danger mb-3"></i>
+                <h4>Fresh Ingredients</h4>
+                <p>We use only the freshest and highest quality ingredients</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-truck fa-3x text-danger mb-3"></i>
+                <h4>Fast Delivery</h4>
+                <p>Quick and reliable delivery service</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-award fa-3x text-danger mb-3"></i>
+                <h4>Best Quality</h4>
+                <p>Consistently delicious pizzas every time</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
